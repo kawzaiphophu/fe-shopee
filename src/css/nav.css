@@ -17,10 +17,20 @@ span {
     display: flex;
     align-items: center; /* Align items vertically */
 }
-.d-flex button{
+nav .btn{
     background: #EE4D2D; 
     padding: 2px;
     margin: 4px;
     color: white;
-
+}
+.modal-backdrop{
+    display: none;
+}
+.cart{
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+.cart:hover{
+    scale: 1.1;
+    transition: ease 0.2s;
 }
