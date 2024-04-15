@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart }) => {
     return (
         <>
             <nav className='sticky-top'>
-                <div className='nav-top d-flex justify-content-between'>
+                <div className='nav-top'>
                     <div>
                         <span>Seller Centre | </span>
                         <span>เริ่มต้นขายสินค้า | </span>
@@ -42,11 +42,11 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart }) => {
                 </div>
                 <div className="navbar nav-mid pt-3">
                     <div className="container-fluid d-flex justify-content-between">
-                        <Link to="/" className="navbar-brand text-white">
+                        <Link to="/" className="navbar-brand text-white w-20">
                             <img className='pe-2' src="https://freelogopng.com/images/all_img/1656180872shopee-icon-png.png" alt="" style={{ width: "60px", borderRadius: "20%" }} />
-                            Shopee
+                            <span className='logo fs-4'>Shopee</span>
                         </Link>
-                        <form className="position-relative d-flex w-75">
+                        <form className="position-relative d-flex w-70">
                             <input
                                 className="form-control"
                                 type="text"
@@ -57,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart }) => {
                             />
                             <Link className="btn position-absolute end-0" to="/" onClick={handleSearch}>Search</Link>
                         </form>
-                        <div>
+                        <div className='w-auto'>
                             <div data-bs-toggle="modal" data-bs-target="#showCart">
                                 <div style={{ position: 'relative', display: 'inline-block' }}>
                                     <img className='cart' src="https://img.icons8.com/?size=48&id=0DBkCUANmgoQ&format=png" alt="" />

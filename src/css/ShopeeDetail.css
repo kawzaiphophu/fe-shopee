@@ -2,9 +2,9 @@
     display: flex;
     justify-content: space-between;
     background: #e7e7e779;
-    padding: 30px;
     border-radius: 10px;
 }
+
 .grid {
     position: relative;
 }
@@ -13,7 +13,8 @@
     filter: drop-shadow(0 0 10px rgb(255, 150, 13));
     transition: ease-in-out 1s;
 }
-.grid img:hover{
+
+.grid img:hover {
     scale: 1.1;
     transition: ease-in-out 1s;
 }
@@ -32,7 +33,8 @@
     object-fit: cover;
     cursor: pointer;
 }
-.big-image{
+
+.big-image {
     width: 100%;
     height: 30rem;
     min-height: 30rem;
@@ -40,12 +42,14 @@
     justify-content: center;
     padding: 2rem;
 }
+
 .big-image img {
     border-radius: 20px;
-    margin:10px 30px;
+    margin: 10px 30px;
     width: 100%;
     overflow: hidden;
 }
+
 .discount-banner {
     position: absolute;
     top: 0;
@@ -54,10 +58,11 @@
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 5px 10px; 
+    padding: 5px 10px;
     transform: rotate(45deg);
-    border-radius:0 20px ;
+    border-radius: 0 20px;
 }
+
 @media only screen and (max-width: 1000px) {
     .details-box {
         display: flex;
@@ -65,8 +70,33 @@
         justify-content: center;
         width: 100%;
     }
+
     .big-image img {
         border-radius: 20px;
-        margin:10px 30px;
+        margin: 10px 30px;
     }
+}
+
+@media only screen and (max-width: 768px) {
+    .big-image  {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 70%;
+        align-items: center;
+    }
+    .main-image{
+        height: 50%;
+        
+    }
+    .detaildiv{
+        display: inline-block;
+        justify-content: start;
+    }
+    .detail{
+        flex-direction: column;
+        
+    }
+
+
 }

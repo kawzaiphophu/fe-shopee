@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams,Link  } from 'react-router-dom';
 import axios from 'axios';
 import '../css/ShopeeDetail.css';
+import Loading from './Loading';
+import ProductCard from '../component/ProductCard';
 
 interface Product {
     id: string;
@@ -10,7 +12,7 @@ interface Product {
     title: string;
     price: number;
     description: string;
-    thumbnail:string;
+    thumbnail: string;
     brand: string;
     rating: number;
     stock: number;
@@ -53,8 +55,8 @@ function ShopeeDetail({ addToCart }: ShopeeDetailProps) {
                 name: productDetail.title,
                 price: productDetail.price,
                 quantity: count,
-                img:productDetail.thumbnail,
-                totle:productDetail.price * count
+                img: productDetail.thumbnail,
+                totle: productDetail.price * count
             };
             addToCart(itemToAdd);
         }
@@ -87,37 +89,56 @@ function ShopeeDetail({ addToCart }: ShopeeDetailProps) {
                             ))}
                         </div>
                     </div>
-                    <div className='w-100 container p-5'>
+                    <div className='w-100 container p-5 detaildiv'>
                         <h1>{productDetail.title}</h1>
-                        <div className='d-flex justify-content-between'>
-                            <h3>{productDetail.price} $</h3>
-                            <h3>Rating : {productDetail.rating}</h3>
+                        <div className='detail'>
+                            <h5>Price : {productDetail.price} $</h5>
+                            <h5>Rating : {productDetail.rating}</h5>
                         </div>
                         <hr />
-                        <h5>
-                            <div className='d-flex justify-content-between'>
+                        <div >
+                            <div className=' justify-content-start detail'>
                                 <div> Brand : {productDetail.brand}</div>
                                 <div> Stock : {productDetail.stock - count} ea</div>
+                                <hr />
                             </div>
-                            <br />
-                            <br />
-                            {productDetail.description}
-                        </h5>
-                        <div className='d-flex justify-content-between'>
-                            <div className='d-flex flex-row'>
-                                <div className={`btn btn-dark m-2 p-3 ${count <= 0 ? 'disabled' : ''}`} onClick={() => setCount(count - 1)}> - </div>
-                                <div className='my-5 px-5 fs-2 btn disabled' >{count}</div>
-                                <div className={`btn btn-dark m-2 p-3 ${count >= productDetail.stock ? 'disabled' : ''}`} onClick={() => setCount(count + 1)}>+</div>
+                            <div> Detail : {productDetail.description}</div>
+                        </div>
+                        <div className=' d-flex justify-content-between detail py-3'>
+                            <div className='d-flex flex-row '>
+                                <div className={`btn btn-sm btn-dark m-2  ${count <= 0 ? 'disabled' : ''}`} onClick={() => setCount(count - 1)}> - </div>
+                                <div className='btn btn-sm disabled' >{count}</div>
+                                <div className={`btn btn-sm btn-dark m-2  ${count >= productDetail.stock ? 'disabled' : ''}`} onClick={() => setCount(count + 1)}>+</div>
                             </div>
                             <div className='d-flex flex-row'>
-                                <div className='pe-2 fs-4'>Total : {productDetail.price * count} $</div>
-                                <div className='btn btn-lg btn-success' onClick={handleAddToCart}>Add To Cart</div>
+                                <div className='pe-2 p-3 '>Total : {productDetail.price * count} $</div>
+                                <div className='btn p-3 btn-sm btn-success ' onClick={handleAddToCart}>Add To Cart</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div className="card-product text-white position-relative" style={{ height: "20rem" }}>
+                                <Link to={`/product/${productDetail.id}`}>
+                                    <div className="card">
+                                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "13rem" }}>
+                                            <img className="card-img-top p-1 w-100" src={productDetail.thumbnail} alt="" style={{ maxWidth: "244px", height: "10rem" }} />
+                                        </div>
+                                        <div className="card-body">
+                                            <h6 className="card-title">{productDetail.title}</h6>
+                                            <div className='d-flex justify-content-between'>
+                                                <span className="card-text fs-5 text-dark">{productDetail.price}$</span>
+                                                <span className='fs-6 text-danger'> -{productDetail.discountPercentage}%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <Loading />
             )}
         </div>
     );

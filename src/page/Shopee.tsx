@@ -150,9 +150,8 @@ function Shopee({ searchTerm }: ShopeeProps) {
                                             <div className="card-body">
                                                 <h6 className="card-title">{product.title}</h6>
                                                 <div className='d-flex justify-content-between'>
-                                                    <span className="card-text fs-5 text-dark">{product.price} $
-                                                        <span className='fs-6 text-danger'> -{product.discountPercentage}%</span>
-                                                    </span>
+                                                    <span className="card-text fs-5 text-dark">{product.price}$</span>
+                                                    <span className='fs-6 text-danger'> -{product.discountPercentage}%</span>
                                                 </div>
                                             </div>
                                         </div>
