@@ -10,23 +10,23 @@ span {
     padding: 3px;
     color: white;
 }
-.cart {
-    filter: invert(1);
-}
 .d-flex {
     display: flex;
     align-items: center; /* Align items vertically */
 }
-nav .btn{
+nav .btn-search{
     background: #EE4D2D; 
-    padding: 2px;
+    padding: 4px;
     margin: 4px;
     color: white;
+    text-decoration: none;
+    border-radius: 10px;
 }
 .modal-backdrop{
     display: none;
 }
 .cart{
+    filter: invert(1);
     cursor: pointer;
     transition: ease 0.2s;
 }
@@ -47,7 +47,7 @@ nav .btn{
 .w-70{
     width: 70%;
 }
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 800px) {
     .nav-top{
         display: none;
     }

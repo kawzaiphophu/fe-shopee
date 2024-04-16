@@ -16,7 +16,7 @@ interface ShopeeProps {
     searchTerm: string | null;
 }
 
-function Shopee({ searchTerm }: ShopeeProps) {
+const Shopee: React.FC<Readonly<ShopeeProps>> = ({ searchTerm }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [product, setProduct] = useState<Product[]>([]);
     const [filterType, setFilterType] = useState<string>("0");
@@ -74,7 +74,7 @@ function Shopee({ searchTerm }: ShopeeProps) {
 
     return (
         <div className='container-fluid pt-3'>
-            
+
             <div className='container d-flex justify-content-center w-100'>
                 <div className='w-75 p-1'>
                     <div id="carouselExampleIndicators" className="carousel slide w-100" data-bs-ride="carousel">
@@ -85,13 +85,13 @@ function Shopee({ searchTerm }: ShopeeProps) {
                         </div>
                         <div className="carousel-inner bg-light w-100" style={{ width: 'auto', height: 'auto', margin: 'auto', marginRight: 'auto', overflow: "hidden" }}>
                             <div className="carousel-item active ">
-                                <img src="https://cf.shopee.co.th/file/th-50009109-e9e051ce2920cd210d4ed6dfa8d09b89_xxhdpi" className="d-block w-100" alt="..." />
+                                <img src="https://cf.shopee.co.th/file/th-50009109-e9e051ce2920cd210d4ed6dfa8d09b89_xxhdpi" className="d-block w-100" alt="shopee ads" />
                             </div>
                             <div className="carousel-item">
-                                <img src="https://cf.shopee.co.th/file/th-50009109-1bd405082103f6fc8b3a8380a91bda56_xxhdpi" className="d-block w-100" alt="..." />
+                                <img src="https://cf.shopee.co.th/file/th-50009109-1bd405082103f6fc8b3a8380a91bda56_xxhdpi" className="d-block w-100" alt="shopee ads" />
                             </div>
                             <div className="carousel-item">
-                                <img src="https://cf.shopee.co.th/file/th-50009109-88bead437d7beea4edae76abba9af2f0_xxhdpi" className="d-block w-100" alt="..." />
+                                <img src="https://cf.shopee.co.th/file/th-50009109-88bead437d7beea4edae76abba9af2f0_xxhdpi" className="d-block w-100" alt="shopee ads" />
                             </div>
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -105,14 +105,17 @@ function Shopee({ searchTerm }: ShopeeProps) {
                     </div>
                 </div>
                 <div className='w-25 d-flex flex-column gap-1'>
-                    <img className='w-100' src="https://cf.shopee.co.th/file/th-50009109-9758a1737bc9f99487152f2f017de248_xhdpi" alt="" />
-                    <img className='w-100' src="https://cf.shopee.co.th/file/th-50009109-cce213dc0f82af13c5efc841dba843e9_xhdpi" alt="" />
+                    <img className='w-100' src="https://cf.shopee.co.th/file/th-50009109-9758a1737bc9f99487152f2f017de248_xhdpi" alt="shopee ads" />
+                    <img className='w-100' src="https://cf.shopee.co.th/file/th-50009109-cce213dc0f82af13c5efc841dba843e9_xhdpi" alt="shopee ads" />
                 </div>
             </div>
-            {/* ================================= */}
             <div className={`container w-100 h-100 py-5 my-5 productdiv`}>
                 <div className='d-flex justify-content-center' style={{ textAlign: 'center' }} >
-                    <h1 className='btn head p-3' onClick={() => { fetchProducts(); setFilterType("0"); }}>สินค้าทั้งหมด</h1>
+                    <button
+                        className='btn btn-danger head p-3 fs-1 '
+                        onClick={() => { fetchProducts(); setFilterType("0"); }}>
+                        สินค้าทั้งหมด
+                    </button>
                 </div>
                 <div className="my-3 d-flex justify-content-between">
                     <select
@@ -120,9 +123,10 @@ function Shopee({ searchTerm }: ShopeeProps) {
                         value={filterType}
                         onChange={(e) => { setIsLoading(true); setFilterType(e.target.value); searchByType(e.target.value); }}
                     >
-                        {categories.map((type, index) => (
-                            <option value={type} key={index}>{type}</option>
+                        {categories.map((type) => (
+                            <option value={type} key={type}>{type}</option>
                         ))}
+
                     </select>
                 </div>
                 <div className="row">
@@ -145,7 +149,7 @@ function Shopee({ searchTerm }: ShopeeProps) {
                                     <Link to={`/product/${product.id}`}>
                                         <div className="card">
                                             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "13rem" }}>
-                                                <img className="card-img-top p-1 w-100" src={product.thumbnail} alt="" style={{ maxWidth: "244px", height: "10rem" }} />
+                                                <img className="card-img-top p-1 w-100" src={product.thumbnail} alt="product thumbnail" style={{ maxWidth: "244px", height: "10rem" }} />
                                             </div>
                                             <div className="card-body">
                                                 <h6 className="card-title">{product.title}</h6>

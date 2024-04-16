@@ -11,7 +11,6 @@ const App: React.FC = () => {
     id: string;
   }
   
-  // Load cart state from localStorage or default to an empty array
   const [cart, setCart] = useState<CartItem[]>(() => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
@@ -24,20 +23,17 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // Save cart state to localStorage whenever it changes
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   return (
-    <>
-      <BrowserRouter>
-        <Navbar setSearchTerm={setSearchTerm} cart={cart} />
-        <Routes>
-          <Route path="/" element={<Shopee searchTerm={searchTerm} />} />
-          <Route path="/product/:id" element={<ShopeeDetail addToCart={addToCart} />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Navbar setSearchTerm={setSearchTerm} cart={cart}/>
+      <Routes>
+        <Route path="/" element={<Shopee searchTerm={searchTerm} />} />
+        <Route path="/product/:id" element={<ShopeeDetail addToCart={addToCart} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

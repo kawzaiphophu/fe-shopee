@@ -1,0 +1,6 @@
+projectKey=sqp_53dcbc6328373d532cbea687a09880b5b6998525
+serverUrl=http://localhost:9000
+serverVersion=10.4.1.88267
+dashboardUrl=http://localhost:9000/dashboard?id=sqp_53dcbc6328373d532cbea687a09880b5b6998525
+ceTaskId=0ace41a7-5c0a-4626-a1ce-742cfa471ff6
+ceTaskUrl=http://localhost:9000/api/ce/task?id=0ace41a7-5c0a-4626-a1ce-742cfa471ff6

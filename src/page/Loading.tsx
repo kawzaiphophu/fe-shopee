@@ -4,10 +4,9 @@ import '../css/loading.css'
 const Loading: React.FC = () => {
     return (
         <div className="loading-screen d-flex flex-column m-auto p-auto">
-            <span className="spinner-border text-warning" role="status">
+            <output className="spinner-border text-warning">
                 <span className="visually-hidden">Loading...</span>
-                
-            </span>
+            </output>
         </div>
     );
 }
