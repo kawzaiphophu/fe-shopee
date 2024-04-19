@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 interface NavbarProps {
     setSearchTerm: (searchTerm: string | null) => void;
     cart: any;
+    clearCart: () => void;
+    removeItem: (index: number) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart }) => {
+
+const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart, clearCart, removeItem }) => {
     const [searchInput, setSearchInput] = useState('');
 
     const handleSearch = () => {
@@ -19,6 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart }) => {
             e.preventDefault();
         }
     };
+
     return (
         <nav className='sticky-top'>
             <div className='nav-top'>
@@ -83,28 +87,28 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchTerm, cart }) => {
                                                     <th className='w-25 text-center'>Price</th>
                                                     <th className='w-25 text-center'>Quantity</th>
                                                     <th className='w-25 text-center'>Totle</th>
+                                                    <th className='w-25 text-center'>Edit</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {cart.map((item: any, index: number) => (
-                                                    <tr key={item.id}>
+                                                    <tr key={index}>
                                                         <td className='text-center align-middle'>{index + 1}</td>
                                                         <td className='text-center'><img className='w-75' src={item.img} alt="item product" /></td>
                                                         <td className='text-center align-middle '>{item.name}</td>
                                                         <td className='text-center align-middle'>{item.price}</td>
                                                         <td className='text-center align-middle'>{item.quantity}</td>
                                                         <td className='text-center align-middle'>{item.totle}</td>
+                                                        <td className='text-center align-middle'>
+                                                            <button className="btn btn-danger" onClick={() => removeItem(index)}>X</button>
+                                                        </td>
                                                     </tr>
                                                 ))}
                                             </tbody>
                                         </table>
                                     </div>
                                     <div className="modal-footer">
-                                        <button className="btn btn-danger" onClick={() => {
-                                            localStorage.clear();
-                                            window.location.reload();
-
-                                        }}>Clear All</button>
+                                        <button className="btn btn-danger" onClick={() => { clearCart() }}>Clear All</button>
                                         <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
